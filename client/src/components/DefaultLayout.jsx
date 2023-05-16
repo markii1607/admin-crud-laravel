@@ -1,12 +1,20 @@
 import React from 'react'
-import { Outlet } from 'react-router-dom'
+import { Navigate, Outlet } from 'react-router-dom'
+import { useStateContext } from '../contexts/ContextProvider'
 
 function DefaultLayout() {
-  return (
-    <div>
-        <Outlet />
-    </div>
-  )
+    const { user, token } = useStateContext()
+
+    // redirect the user if not authenticated
+    if (!token) {
+        return <Navigate to="/login" />
+    }
+
+    return (
+        <div>
+            <Outlet />
+        </div>
+    )
 }
 
 export default DefaultLayout
