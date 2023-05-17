@@ -7,7 +7,7 @@ function GuestLayout() {
 
     // redirect the user if authenticated
     if (token) {
-        return <Navigate to="/users" />
+        return <Navigate to="/" />
     }
 
     return (
