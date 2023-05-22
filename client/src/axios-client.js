@@ -17,9 +17,11 @@ axiosClient.interceptors.response.use((response) => {
 }, (error) => {
     const { response } = error
 
-    if (response.status == 401) { // unauthorized
+    if (response.status === 401) { // unauthorized
         localStorage.removeItem('ACCESS_TOKEN')
     }
+
+    throw error;
 })
 
 export default axiosClient
