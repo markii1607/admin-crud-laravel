@@ -28,7 +28,6 @@ function Signup() {
         setToken(data.token)
       })
       .catch(err => {
-        console.log(err)
         const response = err.response;
 
         if (response && response.status === 422) {
@@ -42,6 +41,7 @@ function Signup() {
       <div className="form">
         <form onSubmit={onSubmit}>
           <h1 className="title">Signup for free</h1>
+          
           {errors &&
             <div className="alert">
               {Object.keys(errors).map(key => (
@@ -49,6 +49,7 @@ function Signup() {
               ))}
             </div>
           }
+
           <input ref={nameRef} type="text" placeholder="Full Name" />
           <input ref={emailRef} type="email" placeholder="Email Address" />
           <input ref={passwordRef} type="password" placeholder="Password" />
