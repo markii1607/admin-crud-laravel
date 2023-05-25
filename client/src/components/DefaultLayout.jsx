@@ -4,7 +4,7 @@ import { useStateContext } from '../contexts/ContextProvider'
 import axiosClient from '../axios-client'
 
 function DefaultLayout() {
-    const { user, token, setUser } = useStateContext()
+    const { user, token, setUser, setToken } = useStateContext()
 
     // redirect the user if not authenticated
     if (!token) {
@@ -13,6 +13,12 @@ function DefaultLayout() {
 
     const onLogout = (e) => {
         e.preventDefault()
+
+        axiosClient.post('/logout')
+            .then(() => {
+                setUser({})
+                setToken(null)
+            })
     }
 
     // fetch user data
